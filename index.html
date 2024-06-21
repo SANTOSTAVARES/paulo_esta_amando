@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva</title>
+    <style>
+        #countdown {
+            font-family: Arial, sans-serif;
+            font-size: 2em;
+            color: #333;
+            text-align: center;
+        }
+
+        body {
+            background-color: antiquewhite;
+        }
+
+        main {
+            background-color: aqua;
+            min-width: 300px;
+            max-width: 1000px;
+            margin: auto;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.418);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Casamento do Paulo e D. Galvão</h1>
+        <img src="/images/paulo.JPG" alt="">
+
+        <p>Um ano de namoro no mês das noivas.</p>
+        <div id="countdown"></div>
+        <script>
+            const futureDate = new Date("May 1, 2025 12:00:00").getTime();
+            // Função para atualizar a contagem regressiva
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = futureDate - now;
+                if (distance < 0) {
+                    document.getElementById("countdown").innerHTML = "Contagem regressiva terminada";
+                    clearInterval(countdownInterval);
+                    return;
+                }
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("countdown").innerHTML =
+                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        </script>
+    </main>
+
+</body>
+
+</html>
